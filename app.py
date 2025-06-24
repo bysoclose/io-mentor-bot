@@ -1,6 +1,6 @@
 	mport requests
 
-API_KEY = "io-v2-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lciI6ImVjNjRlYWY5LWFhM2YtNDJhNi05NzM4LTI3NzY2ZTU1NWUwMCIsImV4cCI6NDkwNDM3Njc0OX0.H7YqxBIsoiI3rByKh094CjXNlybHcwhWOFTbTvLzYVMGd7lDBZkXL_jW8Lq1fHOcAeIEsl502muZhUQWZL5Kkw"
+api_key = os.environ["OPENAI_API_KEY"]  # .env ya da sistem değişkeninden gelsin
 AGENT_ID = "SENIN_AGENT_IDIN"
 
 headers = {
