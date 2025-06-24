@@ -1,8 +1,4 @@
-Tabii, aşağıda senin için direkt olarak README.md dosyasına uygun şekilde hazır, kod blokları da düzgün biçimlendirilmiş hali var. Bunu olduğu gibi README.md dosyana yapıştırabilirsin:
-
----
-
-````markdown
+markdown
 # 🧠 AI Hack Mentor Bot
 
 > An intelligent assistant powered by IO.net's LLM agents to help developers navigate complex information with clarity.
