@@ -72,12 +72,14 @@ From early inventions in the 1800s to Tesla's modern breakthroughs...
 
 
 📁 Project Structure
+
 io-mentor-bot/
 ├── io_mentor_bot.py        # Main script to execute tasks
 ├── app.py                  # Flask API (optional use)
 ├── .env                    # API key (excluded from Git)
 ├── .gitignore              # Git exclusions
 └── requirements.txt        # Dependencies
+
 
 🪪 License
 This project is open-source and licensed under the MIT License.
