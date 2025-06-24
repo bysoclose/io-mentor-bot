@@ -1,9 +1,11 @@
-from iointel import Agent, Workflow
+from dotenv import load_dotenv
+import os
 import asyncio
+from iointel import Agent, Workflow
 
+load_dotenv()
+api_key = os.environ["OPENAI_API_KEY"]
 # Doğrudan API anahtarını gir (güvenli değilse ortam değişkeni kullan)
-api_key = os.environ["OPENAI_API_KEY"]  # .env ya da sistem değişkeninden gelsin
-
 text = """The global electric vehicle (EV) market is witnessing exponential growth..."""
 
 agent = Agent(
