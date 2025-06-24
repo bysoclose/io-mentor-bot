@@ -1,98 +1,115 @@
+Tabii, aşağıda senin için direkt olarak README.md dosyasına uygun şekilde hazır, kod blokları da düzgün biçimlendirilmiş hali var. Bunu olduğu gibi README.md dosyana yapıştırabilirsin:
+
+---
+
+````markdown
 # 🧠 AI Hack Mentor Bot
 
 > An intelligent assistant powered by IO.net's LLM agents to help developers navigate complex information with clarity.
 
 ## 🚀 What is AI Hack Mentor Bot?
 
-AI Hack Mentor Bot is an open-source assistant designed to summarize and analyze complex content (like documentation, research, or articles). It's built using the IO.net AI Agent infrastructure and runs on Llama 3-70B Instruct model.
+AI Hack Mentor Bot is an open-source assistant designed to summarize and analyze complex content such as documentation, research papers, or articles. It is built using the IO.net AI Agent infrastructure and runs on the Llama 3-70B Instruct model.
 
 Ideal for:
-- Developers participating in hackathons
-- Summarizing technical docs
-- Mentoring teammates with dense information
+- Developers participating in hackathons  
+- Summarizing technical documentation  
+- Mentoring teammates with dense information  
 
-## 🚀 Features
+## ✨ Features
 
-- 📚 Summarize long technical texts and documents  
-- 💡 Continue and elaborate on topics using LLMs  
-- 🔗 Connects to [IO Intelligence API](https://intelligence.io.solutions/)  
+- 📚 Summarizes long technical texts and documents  
+- 💡 Continues and elaborates on topics using LLMs  
+- 🔗 Connects to the [IO Intelligence API](https://intelligence.io.solutions/)  
 - 🧑‍💻 Uses powerful models like `Llama-3-70B-Instruct`  
-- ✅ Async support for efficient performance
+- ✅ Supports asynchronous execution for efficient performance  
 
 ## 💡 How It Works
 
 The bot:
-1. Accepts a large input (text, document, etc.)
-2. Sends the objective to IO.net agent (via API)
-3. Uses a powerful AI model to extract key insights
-4. Prints a structured summary
+1. Accepts large input (text, documents, etc.)  
+2. Sends the objective to an IO.net agent via API  
+3. Uses a powerful AI model to extract key insights  
+4. Returns a structured summary  
 
 ## 🛠️ Tech Stack
 
-- Python 3.12
-- [IO.net AI Agents API](https://ai.io.net/ai/agents)
-- Llama-3.3-70B-Instruct model
-- Asyncio & Requests
+- Python 3.12  
+- [IO.net AI Agents API](https://ai.io.net/ai/agents)  
+- Llama-3.3-70B-Instruct model  
+- Asyncio & Requests libraries  
 
 ## 🔧 How to Run
 
-1. Clone the repo:
+1. Clone the repository:
+
    ```bash
    git clone https://github.com/bysoclose/io-mentor-bot.git
    cd io-mentor-bot
+````
 
+2. Create and activate a virtual environment (optional but recommended):
 
-Create and activate a virtual environment (optional but recommended):
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
-python3 -m venv venv
-source venv/bin/activate
+3. Install the required dependencies:
 
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Install the required dependencies:
-pip install -r requirements.txt
+4. 🔐 **API Key Setup**
+   This project requires an IO.net API key:
 
+   * Go to [https://intelligence.io.solutions](https://intelligence.io.solutions) and log in.
+   * Generate your API key.
+   * Create a `.env` file in the project root with the following content:
 
-🔐 API Key Setup
-This project requires an IO.net API key.
-     1.Go to https://intelligence.io.solutions and log in.
-     2.Generate your API key.
-     3.Create a .env file in the project root with the following content:
+     ```
+     OPENAI_API_KEY=io-v2-xxxxxxxxxxxxxxxxxxxxxxxx
+     ```
 
-Code : OPENAI_API_KEY=io-v2-xxxxxxxxxxxxxxxxxxxxxxxx
+5. ▶️ Run the mentor bot:
 
-▶️ Usage
-To run the mentor bot:
-python io_mentor_bot.py
+   ```bash
+   python io_mentor_bot.py
+   ```
 
+## 📄 Example Output
 
-
-📄 Example Output
-The global electric vehicle (EV) market has a rich history...
+```
+The global electric vehicle (EV) market has a rich history...  
 From early inventions in the 1800s to Tesla's modern breakthroughs...
+```
 
+## 📁 Project Structure
 
-📁 Project Structure
-
+```
 io-mentor-bot/
 ├── io_mentor_bot.py        # Main script to execute tasks
-├── app.py                  # Flask API (optional use)
+├── app.py                  # Flask API (optional)
 ├── .env                    # API key (excluded from Git)
 ├── .gitignore              # Git exclusions
 └── requirements.txt        # Dependencies
+```
 
+## 🪪 License
 
-🪪 License
 This project is open-source and licensed under the MIT License.
 
+## 🤝 Contributing
 
-🤝 Contributing
 Contributions, issues, and feature requests are welcome.
 Feel free to open a pull request or submit an issue.
 
+## 🌍 Credits
 
-🌍 Credits
-Made with ❤️ bysoclosee (BİLAL İBANOĞLU)
+Made with ❤️ by bysoclose (Bilal İbanoğlu)
 Powered by IO.net Intelligence API
-Discord : Bilalibanoğlu
-x :Bilal_ibanoglu
+
+Discord: Bilalibanoglu
+X (Twitter): @Bilal_ibanoglu
 
