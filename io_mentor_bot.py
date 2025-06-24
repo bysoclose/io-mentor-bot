@@ -2,7 +2,7 @@ from iointel import Agent, Workflow
 import asyncio
 
 # Doğrudan API anahtarını gir (güvenli değilse ortam değişkeni kullan)
-api_key = "io-v2-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvd25lciI6ImVjNjRlYWY5LWFhM2YtNDJhNi05NzM4LTI3NzY2ZTU1NWUwMCIsImV4cCI6NDkwNDM3Njc0OX0.H7YqxBIsoiI3rByKh094CjXNlybHcwhWOFTbTvLzYVMGd7lDBZkXL_jW8Lq1fHOcAeIEsl502muZhUQWZL5Kkw"  # ← Buraya kendi IO API anahtarını yaz
+api_key = os.environ["OPENAI_API_KEY"]  # .env ya da sistem değişkeninden gelsin
 
 text = """The global electric vehicle (EV) market is witnessing exponential growth..."""
 
