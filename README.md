@@ -1,4 +1,3 @@
-markdown
 # 🧠 AI Hack Mentor Bot
 
 > An intelligent assistant powered by IO.net's LLM agents to help developers navigate complex information with clarity.
