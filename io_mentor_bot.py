@@ -20,8 +20,6 @@ agent = Agent(
     base_url="https://api.intelligence.io.solutions/api/v1"
 )
 
-message_history = []  # Mesaj geçmişi (kullanıcı ve agent mesajları)
-
 async def run_workflow(user_input):
     workflow = Workflow(objective=user_input, client_mode=False)
     result = await workflow.custom(
@@ -32,54 +30,33 @@ async def run_workflow(user_input):
     ).run_tasks()
     return result["results"]["custom-task"]
 
-def update_chat_history():
-    chat_textbox.configure(state="normal")
-    chat_textbox.delete("1.0", "end")
-    for speaker, msg in message_history:
-        prefix = "Sen: " if speaker == "user" else "Agent: "
-        chat_textbox.insert("end", prefix + msg + "\n\n")
-    chat_textbox.configure(state="disabled")
-
 def on_submit():
-    user_input = input_entry.get().strip()
-    if not user_input:
-        return
-    
-    # Mesajı geçmişe ekle ve göster
-    message_history.append(("user", user_input))
-    update_chat_history()
-    
-    # Butonu ve giriş kutusunu devre dışı bırak
-    submit_btn.configure(state="disabled")
-    input_entry.configure(state="disabled")
-    
-    output_textbox.configure(state="normal")
+    user_input = input_entry.get()
     output_textbox.delete("1.0", "end")
-    output_textbox.insert("end", "⏳ LOADING...\n")
-    output_textbox.configure(state="disabled")
-    
-    # Asenkron çağrıyı event loop ile yap
-    asyncio.create_task(handle_agent_response(user_input))
-
-async def handle_agent_response(user_input):
-    result = await run_workflow(user_input)
-    message_history.append(("agent", result))
-    update_chat_history()
-
-    output_textbox.configure(state="normal")
+    output_textbox.insert("end", "⏳ Loading...\n")
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    result = loop.run_until_complete(run_workflow(user_input))
     output_textbox.delete("1.0", "end")
     output_textbox.insert("end", result)
-    output_textbox.configure(state="disabled")
-    
-    # Buton ve giriş kutusunu tekrar aktif et
-    submit_btn.configure(state="normal")
-    input_entry.configure(state="normal")
-    input_entry.delete(0, 'end')
+    # Add to chat history
+    chat_textbox.configure(state="normal")
+    chat_textbox.insert("end", f"You: {user_input}\nAgent: {result}\n\n")
+    chat_textbox.configure(state="disabled")
+    input_entry.delete(0, "end")
 
-# Ana pencere
+def copy_to_clipboard(text):
+    app.clipboard_clear()
+    app.clipboard_append(text)
+    ctk.CTkMessagebox(title="Copied", message=f"'{text}' copied to clipboard!")
+
+def on_click_copy(event, text_widget):
+    text = text_widget.get("1.0", "end").strip()
+    copy_to_clipboard(text)
+
 app = ctk.CTk()
 app.title("IO.NET Assistant")
-app.geometry("700x600")
+app.geometry("700x700")
 
 # Logo
 try:
@@ -92,26 +69,46 @@ except Exception:
     logo_label = ctk.CTkLabel(app, text="IO.NET Assistant", font=ctk.CTkFont(size=20, weight="bold"))
     logo_label.pack(pady=10)
 
-# Giriş kutusu
-input_entry = ctk.CTkEntry(app, placeholder_text="Write your question...", width=500)
+input_entry = ctk.CTkEntry(app, placeholder_text="Write your question...", width=600)
 input_entry.pack(pady=10)
 
-# Gönder butonu
 submit_btn = ctk.CTkButton(app, text="SEND", command=on_submit)
 submit_btn.pack(pady=5)
 
-# Geçmiş mesajlar textbox (salt okunur)
-chat_textbox = ctk.CTkTextbox(app, width=650, height=200)
+chat_textbox = ctk.CTkTextbox(app, width=650, height=150)
 chat_textbox.pack(pady=10)
 chat_textbox.configure(state="disabled")
 
-# Yanıt kutusu (tek mesaj gösteriyor)
-output_textbox = ctk.CTkTextbox(app, width=650, height=300)  # Yüksekliği 150'den 300'e çıkardım
-output_textbox.pack(pady=10, fill="both", expand=True)     # fill ve expand ile esnek boyutlanma
+output_textbox = ctk.CTkTextbox(app, width=650, height=200)
+output_textbox.pack(pady=10)
 output_textbox.configure(state="disabled")
 
+# Links label
+link_label = ctk.CTkLabel(app, text="Links (Click to copy):", font=ctk.CTkFont(size=14, weight="bold"))
+link_label.pack(pady=(20,5))
 
-# Asyncio ve Tkinter entegrasyonu için:
+# Github link text
+github_text = ctk.CTkTextbox(app, width=650, height=25)
+github_text.insert("0.0", "https://github.com/bysoclose/io-mentor-bot")
+github_text.configure(state="disabled")
+github_text.pack(pady=5)
+github_text.bind("<Button-1>", lambda e: on_click_copy(e, github_text))
+
+# Discord link text
+discord_text = ctk.CTkTextbox(app, width=650, height=25)
+discord_text.insert("0.0", "https://discord.gg/cXN3WghNhG")
+discord_text.configure(state="disabled")
+discord_text.pack(pady=5)
+discord_text.bind("<Button-1>", lambda e: on_click_copy(e, discord_text))
+
+# Twitter link text
+twitter_text = ctk.CTkTextbox(app, width=650, height=25)
+twitter_text.insert("0.0", "https://twitter.com/bilal_ibanoglu")
+twitter_text.configure(state="disabled")
+twitter_text.pack(pady=5)
+twitter_text.bind("<Button-1>", lambda e: on_click_copy(e, twitter_text))
+
+# Asyncio and Tkinter integration
 async def main_loop():
     while True:
         app.update()
