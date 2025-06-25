@@ -2,10 +2,11 @@ import customtkinter as ctk
 import asyncio
 from dotenv import load_dotenv
 import os
-from PIL import Image
+from PIL import Image, ImageTk
 from customtkinter import CTkImage
 from iointel import Agent, Workflow
-
+import nest_asyncio
+nest_asyncio.apply()
 load_dotenv()
 api_key = os.environ["OPENAI_API_KEY"]
 
@@ -32,14 +33,17 @@ async def run_workflow(user_input):
 
 def on_submit():
     user_input = input_entry.get()
+    output_textbox.configure(state="normal")
     output_textbox.delete("1.0", "end")
-    output_textbox.insert("end", "⏳ Loading...\n")
+    output_textbox.insert("end", "⏳ Executing Tasks... Please wait...\n")
+    output_textbox.configure(state="disabled")
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     result = loop.run_until_complete(run_workflow(user_input))
+    output_textbox.configure(state="normal")
     output_textbox.delete("1.0", "end")
     output_textbox.insert("end", result)
-    # Add to chat history
+    output_textbox.configure(state="disabled")
     chat_textbox.configure(state="normal")
     chat_textbox.insert("end", f"You: {user_input}\nAgent: {result}\n\n")
     chat_textbox.configure(state="disabled")
@@ -56,13 +60,12 @@ def on_click_copy(event, text_widget):
 
 app = ctk.CTk()
 app.title("IO.NET Assistant")
-app.geometry("700x700")
+app.geometry("720x800")
 
 # Logo
 try:
     image = Image.open("io_logo.png")
-    image = image.resize((120, 40))
-    logo_img = CTkImage(light_image=image, dark_image=image, size=(120,40))
+    logo_img = CTkImage(light_image=image, dark_image=image, size=(120, 40))
     logo_label = ctk.CTkLabel(app, image=logo_img, text="")
     logo_label.pack(pady=10)
 except Exception:
@@ -75,11 +78,11 @@ input_entry.pack(pady=10)
 submit_btn = ctk.CTkButton(app, text="SEND", command=on_submit)
 submit_btn.pack(pady=5)
 
-chat_textbox = ctk.CTkTextbox(app, width=650, height=150)
+chat_textbox = ctk.CTkTextbox(app, width=680, height=200, wrap="word")
 chat_textbox.pack(pady=10)
 chat_textbox.configure(state="disabled")
 
-output_textbox = ctk.CTkTextbox(app, width=650, height=200)
+output_textbox = ctk.CTkTextbox(app, width=680, height=300, wrap="word")
 output_textbox.pack(pady=10)
 output_textbox.configure(state="disabled")
 
@@ -88,21 +91,21 @@ link_label = ctk.CTkLabel(app, text="Links (Click to copy):", font=ctk.CTkFont(s
 link_label.pack(pady=(20,5))
 
 # Github link text
-github_text = ctk.CTkTextbox(app, width=650, height=25)
+github_text = ctk.CTkTextbox(app, width=680, height=25)
 github_text.insert("0.0", "https://github.com/bysoclose/io-mentor-bot")
 github_text.configure(state="disabled")
 github_text.pack(pady=5)
 github_text.bind("<Button-1>", lambda e: on_click_copy(e, github_text))
 
 # Discord link text
-discord_text = ctk.CTkTextbox(app, width=650, height=25)
+discord_text = ctk.CTkTextbox(app, width=680, height=25)
 discord_text.insert("0.0", "https://discord.gg/cXN3WghNhG")
 discord_text.configure(state="disabled")
 discord_text.pack(pady=5)
 discord_text.bind("<Button-1>", lambda e: on_click_copy(e, discord_text))
 
 # Twitter link text
-twitter_text = ctk.CTkTextbox(app, width=650, height=25)
+twitter_text = ctk.CTkTextbox(app, width=680, height=25)
 twitter_text.insert("0.0", "https://twitter.com/bilal_ibanoglu")
 twitter_text.configure(state="disabled")
 twitter_text.pack(pady=5)
