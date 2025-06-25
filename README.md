@@ -41,20 +41,20 @@ The bot:
    ```bash
    git clone https://github.com/bysoclose/io-mentor-bot.git
    cd io-mentor-bot
-````
+   ````
 
 2. Create and activate a virtual environment (optional but recommended):
 
    ```bash
    python3 -m venv venv
    source venv/bin/activate
-   ```
+   ````
 
 3. Install the required dependencies:
 
    ```bash
    pip install -r requirements.txt
-   ```
+   ````
 
 4. 🔐 **API Key Setup**
    This project requires an IO.net API key:
@@ -63,33 +63,33 @@ The bot:
    * Generate your API key.
    * Create a `.env` file in the project root with the following content:
 
-     ```
+     ````
      OPENAI_API_KEY=io-v2-xxxxxxxxxxxxxxxxxxxxxxxx
-     ```
+     ````
 
 5. ▶️ Run the mentor bot:
 
    ```bash
    python io_mentor_bot.py
-   ```
+   ````
 
 ## 📄 Example Output
 
-```
+````
 The global electric vehicle (EV) market has a rich history...  
 From early inventions in the 1800s to Tesla's modern breakthroughs...
-```
+````
 
 ## 📁 Project Structure
 
-```
+````
 io-mentor-bot/
 ├── io_mentor_bot.py        # Main script to execute tasks
 ├── app.py                  # Flask API (optional)
 ├── .env                    # API key (excluded from Git)
 ├── .gitignore              # Git exclusions
 └── requirements.txt        # Dependencies
-```
+````
 
 ## 🪪 License
 
@@ -102,7 +102,7 @@ Feel free to open a pull request or submit an issue.
 
 ## 🌍 Credits
 
-Made with ❤️ by bysoclose (Bilal İbanoğlu)
+Made with ❤️ bysoclose (Bilal İbanoğlu)
 Powered by IO.net Intelligence API
 
 Discord: Bilalibanoglu
