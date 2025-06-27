@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/1bd8bcf5-a505-40ee-9582-47aeba8533ab)
+
+
 # 🧠 AI Hack Mentor Bot
 
 > An intelligent assistant powered by IO.net's LLM agents to help developers navigate complex information with clarity.
