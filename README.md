@@ -1,4 +1,9 @@
-![image](https://github.com/user-attachments/assets/1bd8bcf5-a505-40ee-9582-47aeba8533ab)
+![image](https://github.com/user-attachments/assets/6f81ecc0-43cb-4ac2-ac25-1f7824d3bd66)
+![image](https://github.com/user-attachments/assets/8e629f39-a867-4133-9ba6-7cd508a1e181)
+
+
+Video:
+https://github.com/user-attachments/assets/e7c8c6b7-8b6c-4e47-b8d7-ee9377b00503
 
 
 # 🧠 AI Hack Mentor Bot
