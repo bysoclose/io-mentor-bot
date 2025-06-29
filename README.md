@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/1a066729-55b5-44ab-beb5-204720985692)
+![image](https://github.com/user-attachments/assets/1da30007-b5a3-4fdc-8d1e-9e0f8e343b45)
 
 Video:
 https://github.com/user-attachments/assets/e7c8c6b7-8b6c-4e47-b8d7-ee9377b00503
